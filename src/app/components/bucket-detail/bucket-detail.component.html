@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="text-center">
+        <h1>{{name}}</h1>
+    </div>
+    
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="col">Nombre</th>
+                    <th class="col">Descargar</th>
+                    <th class="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let det of Detail">
+                    <td>{{det.name}}</td>
+                    <td><button (click)="download(det.name)" class="btn btn-primary"><fa-icon [icon]="faDownload"></fa-icon></button></td>
+                    <td><button (click)="confirm(content,det.name)" class="btn btn-danger"><fa-icon [icon]="faTrashAlt"></fa-icon></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a [routerLink]="['/bucketDetail/',name,'uploadImage']"><button class="btn btn-primary">Subir Imagen</button></a>
+        </div>
+        <div class="col">
+            <a [routerLink]="['/listBuckets']"><button class="btn btn-secondary">Lista de Buckets</button></a>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">    
+    <div class="modal-header">    
+        <h4 class="modal-title" id="modal-basic-title">Confirmación</h4>    
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">    
+            <span aria-hidden="true">×</span>    
+        </button>    
+    </div>    
+    <div class="modal-body">    
+        <p>¿Seguro que deseas eliminar la imagen?</p>    
+    </div>    
+    <div class="modal-footer">    
+        <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancelar</button>    
+        <button type="button" class="btn btn-outline-dark" (click)="c('yes')">Aceptar</button>    
+    </div>    
+</ng-template>   

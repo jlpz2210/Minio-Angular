@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="no-data text-center" *ngIf="Bucket.length == 0">
+        <p>
+            No existen buckets
+        </p>
+    </div>
+    <div *ngIf='Bucket.length !== 0'>
+        <div class="col-md-12">
+            <h1>Lista de Buckets</h1>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Fecha de creación</th>
+                  <th scope="col">Ver objetos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let buck of Bucket">
+                  <td>{{buck.name}}</td>
+                  <td>{{buck.creationDate}}</td>
+                  <td><a [routerLink]="['/bucketDetail/',buck.name]"><fa-icon [icon]="faEye"></fa-icon></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
